@@ -1,0 +1,17 @@
+.briefNoteWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 8.5px;
+  gap: 5px;
+  color: #323338;
+  border-bottom: 2px solid #efefef;
+}
+.briefNoteWrapper:hover {
+  background-color: #eff4ff;
+}
+.briefNoteWrapper .sh1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}

@@ -1,0 +1,27 @@
+.inputWrapper{
+  display: flex;
+  width: inherit;
+  padding: 10px 0;
+}
+.textarea{
+  height: 100%;
+}
+.inputWrapper input, .inputWrapper textarea{
+  display: block;
+  color: #BFBFBF;
+  text-align: justify;
+  border: none;
+  outline: none;
+  width: inherit;
+  font-size: 14px;
+  line-height: 19.07px;
+  font-family: "Open Sans", sans-serif;
+  text-indent: 0;
+}
+input::placeholder, textarea::placeholder{
+  color: #BFBFBF;
+}
+textarea{
+  resize: none;
+  height: 100%;
+}

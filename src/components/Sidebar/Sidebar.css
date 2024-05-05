@@ -1,0 +1,44 @@
+.sidebarWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.sidebarWrapper .createCategory {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+.createCategory .inputWrapper {
+  padding: 0;
+}
+.createCategory .button img {
+  border-left: 0px;
+}
+.sidebarWrapper input {
+  width: 100% !important;
+}
+.hamburger {
+  display: none !important;
+}
+@media screen and (max-width: 768px) {
+  .sidebarWrapper {
+    height: auto;
+  }
+  .sidebarWrapper .hideCategories{
+    display: none;
+  }
+  .categoryButtons {
+    display: flex;
+    gap: 10px;
+  }
+  .categoryButtons .green {
+    width: 100%;
+  }
+}

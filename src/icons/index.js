@@ -1,0 +1,10 @@
+export { default as closedFile } from "./closed-file.svg";
+export { default as openedFile } from "./opened-file.svg";
+export { default as closedDropdown } from "./closed-dropdown.svg";
+export { default as openedDropdown } from "./opened-dropdown.svg";
+export { default as add } from "./add.svg";
+export { default as cross } from "./cross.svg";
+export { default as search } from "./search.svg";
+export { default as tick } from "./tick.svg";
+export { default as trash } from "./trash.svg";
+export { default as closedDropdownBlack } from "./closed-dropdown-black.svg";

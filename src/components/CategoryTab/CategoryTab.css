@@ -1,0 +1,21 @@
+.categoryWrapper{
+  display: flex;
+  justify-content: space-between;
+  color: #F8F8FA;
+  background-color: #1264A3;
+  padding: 10px;
+  /* margin: 10px; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+.categoryWrapper div{
+  display: flex;
+  gap: 10px;
+}
+.categoryWrapper span{
+  text-transform: capitalize;
+}
+.current{
+  color: #323338;
+  background-color: #F8F8FA;
+}

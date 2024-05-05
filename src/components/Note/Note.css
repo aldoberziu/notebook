@@ -1,0 +1,59 @@
+.noteWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 20px;
+}
+.noteWrapper .inputWrapper{
+  padding: 10px 0;
+}
+.noteWrapper .textarea {
+  height: 100%;
+}
+.noteWrapper .button {
+  width: 150px;
+  align-self: end;
+}
+.noteWrapper .tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.noteWrapper .tabs div {
+  display: flex;
+  gap: 10px;
+}
+.tabs > * span {
+  background-color: #1264a3;
+  border-radius: 5px;
+  height: 32px;
+}
+.tabs div:first-child span {
+  width: 120px;
+}
+.tabs div:last-child span {
+  width: 32px !important;
+}
+.tabs div:first-child span:last-child {
+  background-color: #71cf48;
+}
+.noteWrapper .buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .wrapper.noteWrapper{
+    height: 100% !important;
+  }
+  .tabs > * span {
+    height: 20px;
+    border-radius: 3px;
+  }
+  .tabs div:first-child span {
+    width: 80px;
+  }
+  .tabs div:last-child span {
+    width: 20px !important;
+  }
+}
