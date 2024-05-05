@@ -9,11 +9,14 @@ import { categoriesActions, notesActions } from "./store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "./icons";
 import Button from "./components/Button";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
   const ctx = useContext(CategoryContext);
   const sNotes = useSelector((state) => state.notes.notes);
+  const [currentNotes, setCurrentNotes] = useState([]);
+  const [search, setSearch] = useState("");
   const [actionOnNote, setActionOnNote] = useState(false);
   const [updatingNote, setUpdatingNote] = useState(false);
   const [hideCatMobile, setHideCatMobile] = useState(false);
@@ -38,22 +41,35 @@ function App() {
   useEffect(() => {
     setClickedNote([]);
   }, [ctx.category]);
+  useEffect(() => {
+    let filteredNotes = [];
+    filteredNotes = (sNotes.length > 0 ? sNotes : notes).filter(
+      (note) => note.category === ctx.category
+    );
+    if (search !== "") {
+      filteredNotes = filteredNotes.filter(
+        (note) => note.title?.includes(search) || note.body?.includes(search)
+      );
+    }
+    setCurrentNotes(filteredNotes);
+  }, [ctx.category, search, sNotes]);
 
-  const currentNotes = (sNotes.length > 0 ? sNotes : notes).filter(
-    (note) => note.category === ctx.category
-  );
+  const handleSearch = (value) => setSearch(value);
 
   return (
     <div className="appWrapper">
-      <Sidebar hideCategories={hideCatMobile}/>
+      <Sidebar hideCategories={hideCatMobile} />
       {ctx.category === "" || !!actionOnNote ? (
         <Note actionFinished={handleFinish} />
       ) : (
         <div className={`notesWrapper ${!!updatingNote ? "updatingNote" : ""}`}>
           <div className="catNotesWrapper wrapper">
-            <Button green icon={add} onClick={handleCreate}>
-              create Note
-            </Button>
+            <div className="briefNotesEvents">
+              <Button green icon={add} onClick={handleCreate}>
+                create Note
+              </Button>
+              <Search search={handleSearch} />
+            </div>
             <div className="briefNotesWrapper">
               {currentNotes.map((note) => (
                 <BriefNote key={note.id} note={note} clicked={handleClicked} />

@@ -13,6 +13,11 @@
   padding: 10px;
   height: 100vh;
 }
+.briefNotesEvents{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
 .catNotesWrapper {
   display: flex;
   flex-direction: column;
@@ -20,7 +25,6 @@
 }
 .catNotesWrapper .button {
   width: 220px;
-  margin-bottom: 15px;
 }
 .notesWrapper {
   display: grid;

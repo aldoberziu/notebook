@@ -4,7 +4,7 @@ export { default as closedDropdown } from "./closed-dropdown.svg";
 export { default as openedDropdown } from "./opened-dropdown.svg";
 export { default as add } from "./add.svg";
 export { default as cross } from "./cross.svg";
-export { default as search } from "./search.svg";
+export { default as searchIcon } from "./search.svg";
 export { default as tick } from "./tick.svg";
 export { default as trash } from "./trash.svg";
 export { default as closedDropdownBlack } from "./closed-dropdown-black.svg";
