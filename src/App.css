@@ -13,7 +13,7 @@
   padding: 10px;
   height: 100vh;
 }
-.briefNotesEvents{
+.briefNotesEvents {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
@@ -55,6 +55,14 @@ hr {
     max-height: 30vh;
     overflow: hidden;
     overflow-y: scroll;
+  }
+  .catNotesWrapper .button {
+    width: auto;
+  }
+  .briefNotesEvents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
   }
   .appWrapper .sidebarWrapper {
     max-height: 30vh;
