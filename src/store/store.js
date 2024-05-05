@@ -35,7 +35,6 @@ const categoriesSlice = createSlice({
     },
   },
 });
-
 const store = configureStore({
   reducer: {
     notes: notesSlice.reducer,

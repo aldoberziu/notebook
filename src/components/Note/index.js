@@ -11,34 +11,56 @@ const Note = ({ actionFinished, updatingNote }) => {
   const dispatch = useDispatch();
   const ctx = useContext(CategoryContext);
   const sNotes = useSelector((state) => state.notes.notes);
+  const [storedIDs, setStoredIDs] = useState([]);
   const [note, setNote] = useState({});
+  const [isClickable, setIsClickable] = useState(false);
 
   const handleInput = ({ field, value }) => {
     setNote((state) => ({ ...state, [field]: value }));
+    if (!isClickable) setIsClickable(true);
   };
-
   const handleCreate = () => {
     dispatch(notesActions.addNote(note));
     actionFinished(false);
+    setIsClickable(false);
   };
   const handleUpdate = () => {
     const editingNoteID = updatingNote.id;
     dispatch(notesActions.editNote({ editingNoteID, note }));
     actionFinished(false);
+    setIsClickable(false);
   };
   const handleDelete = () => {
     dispatch(notesActions.deleteNote(updatingNote.id));
     actionFinished(false);
+    setIsClickable(false);
   };
 
   useEffect(() => {
-    setNote({ id: sNotes.length + 1 });
+    if (sNotes.length > 0) {
+      const ids = sNotes.map((note) => note.id).sort((a, b) => a - b);
+      setStoredIDs(ids);
+    }
+  }, [sNotes]);
+  useEffect(() => {
+    setNote({ id: generateID() });
     if (ctx.category === "") {
       setNote((state) => ({ ...state, category: "0" }));
     } else {
       setNote((state) => ({ ...state, category: ctx.category }));
     }
-  }, []);
+  }, [storedIDs]);
+  const generateID = () => {
+    let generatedID = 1;
+    for (let id of storedIDs) {
+      if (parseInt(id) === generatedID) {
+        generatedID++;
+      } else {
+        break;
+      }
+    }
+    return generatedID.toString();
+  };
   return (
     <div className="noteWrapper wrapper">
       <div className="tabs">
@@ -74,12 +96,12 @@ const Note = ({ actionFinished, updatingNote }) => {
           <Button red icon={trash} onClick={handleDelete}>
             Delete Note
           </Button>
-          <Button green icon={tick} onClick={handleUpdate}>
+          <Button green disabled={!isClickable ? true : false} icon={tick} onClick={handleUpdate}>
             Save Changes
           </Button>
         </div>
       ) : (
-        <Button green icon={tick} onClick={handleCreate}>
+        <Button green disabled={!isClickable ? true : false} icon={tick} onClick={handleCreate}>
           Save Changes
         </Button>
       )}

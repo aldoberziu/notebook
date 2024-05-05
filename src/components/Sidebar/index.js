@@ -15,6 +15,7 @@ const Sidebar = ({ hideCategories }) => {
   const sCategories = useSelector((state) => state.categories.categories);
   const [createCategory, setCreateCategory] = useState(false);
   const [category, setCategory] = useState({});
+  const [isClickable, setIsClickable] = useState(false);
   const dispatch = useDispatch();
 
   //still not perfect
@@ -30,13 +31,18 @@ const Sidebar = ({ hideCategories }) => {
   //   return id;
   // };
   const handleInput = (input) => {
-    setCategory({ id: /*generateID()*/ sCategories.length + 1, title: input.value });
+    setCategory({ id: sCategories.length + 1, title: input.value });
+    if (!isClickable) setIsClickable(true);
   };
   const expandInput = () => setCreateCategory(true);
-  const collapseInput = () => setCreateCategory(false);
+  const collapseInput = () => {
+    setCreateCategory(false);
+    setIsClickable(false);
+  };
   const handleCategoryCreation = () => {
     dispatch(categoriesActions.addCategory(category));
     setCreateCategory(false);
+    setIsClickable(false);
   };
   return (
     <div className="sidebarWrapper wrapper">
@@ -48,7 +54,12 @@ const Sidebar = ({ hideCategories }) => {
       {createCategory && (
         <div className="createCategory">
           <Input type="text" name="category" placeholder="Add a title..." input={handleInput} />
-          <Button green icon={tick} onClick={handleCategoryCreation}></Button>
+          <Button
+            green
+            disabled={!isClickable ? true : false}
+            icon={tick}
+            onClick={handleCategoryCreation}
+          ></Button>
           <Button red icon={cross} onClick={collapseInput}></Button>
         </div>
       )}
