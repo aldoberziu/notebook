@@ -58,8 +58,10 @@ hr {
   }
   .catNotesWrapper .button {
     width: auto;
-    padding-left: 10px; 
-    padding-right: 10px; 
+  }
+  .catNotesWrapper .button p {
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .briefNotesEvents {
     display: grid;
