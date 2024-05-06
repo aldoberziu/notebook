@@ -5,14 +5,14 @@ import "./Search.css";
 const Search = ({ search }) => {
   const [searchValue, setSearchValue] = useState("");
   const handleInput = (e) => {
-    setSearchValue(e.target.value);
+    setSearchValue(e.target.value.toLowerCase());
   };
   useEffect(() => {
     search(searchValue);
   }, [searchValue]);
   return (
     <div className="searchWrapper">
-      <img src={searchIcon}/>
+      <img src={searchIcon} />
       <input type="text" name="search" placeholder="Search..." onChange={handleInput} />
     </div>
   );

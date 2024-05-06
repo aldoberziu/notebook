@@ -48,7 +48,9 @@ function App() {
     );
     if (search !== "") {
       filteredNotes = filteredNotes.filter(
-        (note) => note.title?.includes(search) || note.body?.includes(search)
+        (note) =>
+          note.title?.toLowerCase().includes(search) ||
+          note.body?.toLowerCase().includes(search)
       );
     }
     setCurrentNotes(filteredNotes);
