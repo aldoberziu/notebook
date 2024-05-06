@@ -7,41 +7,47 @@ import CategoryContext from "../../store/category-context";
 import { useSelector, useDispatch } from "react-redux";
 import { notesActions } from "../../store/store";
 
+// component to either create new note or update note
 const Note = ({ actionFinished, updatingNote }) => {
   const dispatch = useDispatch();
-  const ctx = useContext(CategoryContext);
-  const sNotes = useSelector((state) => state.notes.notes);
-  const [storedIDs, setStoredIDs] = useState([]);
+  const ctx = useContext(CategoryContext); //category from context
+  const sNotes = useSelector((state) => state.notes.notes); //notes from redux state
+  const [storedIDs, setStoredIDs] = useState([]); //ids of notes stored on redux
   const [note, setNote] = useState({});
-  const [isClickable, setIsClickable] = useState(false);
+  const [isClickable, setIsClickable] = useState(false); //state to make button clickable or not
 
+  //handle data from input fields
   const handleInput = ({ field, value }) => {
     setNote((state) => ({ ...state, [field]: value }));
     if (!isClickable) setIsClickable(true);
   };
+  //save note on redux on creation
   const handleCreate = () => {
     dispatch(notesActions.addNote(note));
     actionFinished(false);
     setIsClickable(false);
   };
+  //update note on redux
   const handleUpdate = () => {
     const editingNoteID = updatingNote.id;
     dispatch(notesActions.editNote({ editingNoteID, note }));
     actionFinished(false);
     setIsClickable(false);
   };
+  //delete note from redux
   const handleDelete = () => {
     dispatch(notesActions.deleteNote(updatingNote.id));
     actionFinished(false);
     setIsClickable(false);
   };
-
+  //store all notes' ids in useState (sorted)
   useEffect(() => {
     if (sNotes.length > 0) {
       const ids = sNotes.map((note) => note.id).sort((a, b) => a - b);
       setStoredIDs(ids);
     }
   }, [sNotes]);
+  //build a premade note with generated id and general category on each render
   useEffect(() => {
     setNote({ id: generateID() });
     if (ctx.category === "") {
@@ -50,6 +56,7 @@ const Note = ({ actionFinished, updatingNote }) => {
       setNote((state) => ({ ...state, category: ctx.category }));
     }
   }, [storedIDs]);
+  //generate id when creating new note
   const generateID = () => {
     let generatedID = 1;
     for (let id of storedIDs) {

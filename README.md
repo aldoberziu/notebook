@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Notebook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A website that helps you organize daily notes. User Friendly and available on desktop and mobile
 
-## Available Scripts
+## Installation
 
 In the project directory, you can run:
 
+To install npm packages needed for the app to run:
+### `npm install`
+
+To run the app in your browser:
 ### `npm start`
 
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
 
-### `npm test`
+- On the first load, there are two sections: a left sidebar and a window where you can
+  actually create your new note.
+- Sidebar is composed with a section to create a new category for your upcoming notes
+  and a section with all categories of notes. For testing purposes, some categories are
+  premade.
+- Clicking on a category will display notes of that particular category.
+- Clicking on Create Note will bring on a window to create a new note, which consists
+  on two input fields, a title and a body for the note. When finished, click Save
+  Changes button on bottom right corner.
+- Alongside the Create Note button there is a Search bar when you can search notes
+  case insensitive based on title or body from a particular category clicked previously.
+- If no category was previously clicked, the note will be saved on General category.
+- Clicking on an existing note will bring you the same window, this time with two
+  features, to either update its content or delete the note forever.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How might you make this app more secure?
 
-### `npm run build`
+Using user input sanitization by filtering out harmful characters.
+Implementing client side validation for inputs, users will input on
+expected formats, for example expected data types and length limits.
+If we were to use a backend, for sure we should implement login and 
+authentication
+We could also limit the number of requests hitting our API.
+If there are a lot of users, hashing notes saved on the database will
+increase security and they could save passwords and other sensitive data.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How would you make this solution scale to millions of records?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Using pagination in order to load notes on a bunch in order to increase performance
+Using client-side caching like localStorage to save notes previously fetched
+Implementing lazy loading to increase performance.
+If backend were a thing in this app, sending API requests to retrieve notes only
+based on a certain category and not all milions of notes together.

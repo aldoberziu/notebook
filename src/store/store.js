@@ -1,5 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
+// create slices of state
 const notesSlice = createSlice({
   name: "notes",
   initialState: { notes: [] },
@@ -35,12 +36,16 @@ const categoriesSlice = createSlice({
     },
   },
 });
+
+//configure reducers of slices
 const store = configureStore({
   reducer: {
     notes: notesSlice.reducer,
     categories: categoriesSlice.reducer,
   },
 });
+
+//export actions of slices
 export const notesActions = notesSlice.actions;
 export const categoriesActions = categoriesSlice.actions;
 

@@ -8,14 +8,16 @@ const CategoryTab = ({ category, count, ctx: catContext }) => {
   const [current, setCurrent] = useState(false);
   const ctx = useContext(CategoryContext);
 
+  // set state on which category is clicked
   useEffect(() => {
     if (catContext === category.id) {
       setCurrent(true);
     } else {
       setCurrent(false);
     }
-  }, [catContext]);
+  }, [catContext, category.id]);
 
+  //change category value on context
   const handleClick = () => {
     ctx.setCategory(category.id);
   };
@@ -28,22 +30,22 @@ const CategoryTab = ({ category, count, ctx: catContext }) => {
       {!!current ? (
         <>
           <div>
-            <img src={openedFile} />
+            <img src={openedFile} alt="" />
             <Text sh1>
               {category.title} {`(${count})`}
             </Text>
           </div>
-          <img src={openedDropdown} />
+          <img src={openedDropdown} alt="" />
         </>
       ) : (
         <>
           <div>
-            <img src={closedFile} />
+            <img src={closedFile} alt="" />
             <Text sh1>
               {category.title} {`(${count})`}
             </Text>
           </div>
-          <img src={closedDropdown} />
+          <img src={closedDropdown} alt="" />
         </>
       )}
     </div>

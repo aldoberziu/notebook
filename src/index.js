@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  //wrapping the entire app with context and redux providers
   <React.StrictMode>
     <Provider store={store}>
       <CategoryContextProvider>

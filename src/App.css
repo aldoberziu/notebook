@@ -59,10 +59,6 @@ hr {
   .catNotesWrapper .button {
     width: auto;
   }
-  .catNotesWrapper .button p {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
   .briefNotesEvents {
     display: grid;
     grid-template-columns: 3fr 4fr;

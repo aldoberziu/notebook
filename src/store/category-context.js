@@ -5,6 +5,7 @@ const CategoryContext = React.createContext({
   setCategory: (id) => {},
 });
 
+//create context provider based on useState
 export const CategoryContextProvider = (props) => {
   const [cat, setCat] = useState("");
 

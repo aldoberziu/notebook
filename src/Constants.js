@@ -1,3 +1,4 @@
+//constants created just for testing purposes
 export const notes = [
   {
     id: "1",

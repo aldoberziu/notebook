@@ -7,29 +7,17 @@ import Button from "../Button";
 import { add, cross, tick } from "../../icons";
 import Input from "../Input";
 import { useDispatch, useSelector } from "react-redux";
-import { categoriesActions, notesActions } from "../../store/store";
+import { categoriesActions } from "../../store/store";
 
 const Sidebar = ({ hideCategories }) => {
   const ctx = useContext(CategoryContext);
-  const sNotes = useSelector((state) => state.notes.notes);
-  const sCategories = useSelector((state) => state.categories.categories);
-  const [createCategory, setCreateCategory] = useState(false);
+  const sNotes = useSelector((state) => state.notes.notes); //redux state notes
+  const sCategories = useSelector((state) => state.categories.categories); //redux state categories
+  const [createCategory, setCreateCategory] = useState(false); //state to collapse/expand the dropdown
   const [category, setCategory] = useState({});
-  const [isClickable, setIsClickable] = useState(false);
+  const [isClickable, setIsClickable] = useState(false); //state to make button (un)clickable
   const dispatch = useDispatch();
 
-  //still not perfect
-  // const generateID = () => {
-  //   let id = 1;
-  //   for (let cat of categories) {
-  //     if (cat.id === id) {
-  //       id++;
-  //     } else {
-  //       break;
-  //     }
-  //   }
-  //   return id;
-  // };
   const handleInput = (input) => {
     setCategory({ id: sCategories.length + 1, title: input.value });
     if (!isClickable) setIsClickable(true);
@@ -64,6 +52,7 @@ const Sidebar = ({ hideCategories }) => {
         </div>
       )}
       <div className={`categories ${!!hideCategories ? "hideCategories" : ""}`}>
+        {/* if redux fails or is late, display categories from Constants.js on first render */}
         {(sCategories.length > 0 ? sCategories : categories).map((category) => {
           const filteredNotes = (sNotes.length > 0 ? sNotes : notes).filter(
             (note) => note.category === category.id

@@ -29,7 +29,7 @@ const Button = ({
         {text}
         {children}
       </p>
-      {!!icon ? <img src={icon} /> : ""}
+      {!!icon ? <img src={icon} alt=""/> : ""}
     </div>
   );
 };

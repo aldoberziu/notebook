@@ -14,14 +14,15 @@ import Search from "./components/Search";
 function App() {
   const dispatch = useDispatch();
   const ctx = useContext(CategoryContext);
-  const sNotes = useSelector((state) => state.notes.notes);
-  const [currentNotes, setCurrentNotes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [actionOnNote, setActionOnNote] = useState(false);
-  const [updatingNote, setUpdatingNote] = useState(false);
-  const [hideCatMobile, setHideCatMobile] = useState(false);
-  const [clickedNote, setClickedNote] = useState({});
+  const sNotes = useSelector((state) => state.notes.notes); //redux state notes
+  const [currentNotes, setCurrentNotes] = useState([]); //notes displayed by category
+  const [search, setSearch] = useState(""); //search string state
+  const [actionOnNote, setActionOnNote] = useState(false); //boolean if creating note page opened or not
+  const [updatingNote, setUpdatingNote] = useState(false); //boolean if we updating or not
+  const [hideCatMobile, setHideCatMobile] = useState(false); //boolean hide/show categories of sidebar on mobile
+  const [clickedNote, setClickedNote] = useState({}); //pass clicked BriefNote as prop to child
 
+  //save notes and categories in redux state
   useEffect(() => {
     dispatch(notesActions.addNotes(notes));
     dispatch(categoriesActions.addCategories(categories));
@@ -38,9 +39,11 @@ function App() {
     setUpdatingNote(true);
     setHideCatMobile(true);
   };
+  //change clickedNote state on context's category change
   useEffect(() => {
     setClickedNote([]);
   }, [ctx.category]);
+  //filter notes when needed either by category click or search input
   useEffect(() => {
     let filteredNotes = [];
     filteredNotes = (sNotes.length > 0 ? sNotes : notes).filter(
@@ -61,9 +64,11 @@ function App() {
   return (
     <div className="appWrapper">
       <Sidebar hideCategories={hideCatMobile} />
+      {/* display create note component on first render */}
       {ctx.category === "" || !!actionOnNote ? (
         <Note actionFinished={handleFinish} />
       ) : (
+        // what to display if a category is clicked
         <div className={`notesWrapper ${!!updatingNote ? "updatingNote" : ""}`}>
           <div className="catNotesWrapper wrapper">
             <div className="briefNotesEvents">
@@ -73,11 +78,13 @@ function App() {
               <Search search={handleSearch} />
             </div>
             <div className="briefNotesWrapper">
+              {/* notes displayed filtered by category clicked */}
               {currentNotes.map((note) => (
                 <BriefNote key={note.id} note={note} clicked={handleClicked} />
               ))}
             </div>
           </div>
+          {/* brief note clicked so display update note component */}
           {clickedNote?.length !== 0 && !!updatingNote ? (
             <Note actionFinished={handleUpdateFinish} updatingNote={clickedNote[0]} />
           ) : null}

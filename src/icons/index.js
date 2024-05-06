@@ -7,4 +7,3 @@ export { default as cross } from "./cross.svg";
 export { default as searchIcon } from "./search.svg";
 export { default as tick } from "./tick.svg";
 export { default as trash } from "./trash.svg";
-export { default as closedDropdownBlack } from "./closed-dropdown-black.svg";

@@ -2,6 +2,8 @@ import Text from "../Text";
 import "./BriefNote.css";
 
 const BriefNote = ({ note, clicked }) => {
+
+  //pass prop to parent defining which note is clicked
   const handleClick = () => clicked?.(note.id);
   return (
     <div className="briefNoteWrapper" onClick={handleClick}>

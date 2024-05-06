@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { searchIcon } from "../../icons";
 import "./Search.css";
 
 const Search = ({ search }) => {
-  const [searchValue, setSearchValue] = useState("");
-  const handleInput = (e) => {
-    setSearchValue(e.target.value.toLowerCase());
+  const searchInput = useRef();
+  //pass input to parent as props
+  const handleInput = () => {
+    search(searchInput.current.value.toLowerCase());
   };
-  useEffect(() => {
-    search(searchValue);
-  }, [searchValue]);
   return (
     <div className="searchWrapper">
-      <img src={searchIcon} />
-      <input type="text" name="search" placeholder="Search..." onChange={handleInput} />
+      <img src={searchIcon} alt="search"/>
+      <input
+        type="text"
+        name="search"
+        placeholder="Search..."
+        onChange={handleInput}
+        ref={searchInput}
+      />
     </div>
   );
 };
