@@ -47,12 +47,11 @@ hr {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
   }
-  .notesWrapper {
-    grid-template-columns: 1fr;
+  .updatingNote {
+    grid-template-columns: 1fr !important;
     grid-template-rows: 30vh auto !important;
   }
   .briefNotesWrapper {
-    max-height: 30vh;
     overflow: hidden;
     overflow-y: scroll;
   }
